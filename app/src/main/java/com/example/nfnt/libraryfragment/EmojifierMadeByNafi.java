@@ -31,7 +31,7 @@ public class EmojifierMadeByNafi {
         CLOSED_EYE_FROWN
     }
 
-    private static final String TAG = Emojifier.class.getSimpleName();
+    private static final String TAG = EmojifierMadeByNafi.class.getSimpleName();
 
     public static Bitmap detectFaces(Context context, Bitmap image,Bitmap emoji) {
         //get the detector
@@ -82,40 +82,4 @@ public class EmojifierMadeByNafi {
         return resultBitmap;
     }
 
-//    private static EmojifierMadeByNafi.Emoji whichEmoji(Face face) {
-//        //Timber.d( "getClassifications: smilingProb = " + face.getIsSmilingProbability());
-//        //Timber.d("getClassifications: leftEyeOpenProb = " + face.getIsLeftEyeOpenProbability());
-//        //Timber.d("getClassifications: rightEyeOpenProb = " + face.getIsRightEyeOpenProbability());
-//        boolean smiling = face.getIsSmilingProbability() > SMILING_PROP_THRESHOLD;
-//        boolean leftEyeClosed = face.getIsLeftEyeOpenProbability() < EYE_OPEN_PROP_THRESHOLD;
-//        boolean rightEyeClosed = face.getIsRightEyeOpenProbability() < EYE_OPEN_PROP_THRESHOLD;
-//
-//        // Determine and log the appropriate emoji
-//        EmojifierMadeByNafi.Emoji emoji;
-//        if (smiling) {
-//            if (leftEyeClosed && !rightEyeClosed) {
-//                emoji = Emojifier.Emoji.LEFT_WINK;
-//            } else if (rightEyeClosed && !leftEyeClosed) {
-//                emoji = Emojifier.Emoji.RIGHT_WINK;
-//            } else if (leftEyeClosed) {
-//                emoji = Emojifier.Emoji.CLOSED_EYE_SMILE;
-//            } else {
-//                emoji = Emojifier.Emoji.SMILE;
-//            }
-//        } else {
-//            if (leftEyeClosed && !rightEyeClosed) {
-//                emoji = Emojifier.Emoji.LEFT_WINK_FROWN;
-//            } else if (rightEyeClosed && !leftEyeClosed) {
-//                emoji = Emojifier.Emoji.RIGHT_WINK_FROWN;
-//            } else if (leftEyeClosed) {
-//                emoji = Emojifier.Emoji.CLOSED_EYE_FROWN;
-//            } else {
-//                emoji = Emojifier.Emoji.FROWN;
-//            }
-//        }
-//
-//        // Log the chosen Emoji
-//        //Timber.d("whichEmoji: " + emoji.name());
-//        return emoji;
-//    }
 }

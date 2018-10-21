@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/appbar">
+    </include>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.nfnt.libraryfragment.MainActi"
+    android:layout_weight="25"
+    android:layout_height="10dp"
     android:background="#ffffff">
-
-
     <ImageView
         android:layout_margin="10dp"
         android:id="@+id/imageLayout"
-        android:layout_width="200dp"
-        android:layout_height="400dp"
-        android:minHeight="300dp"
-        android:onClick="getGambar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#dddddd"
         android:src="@drawable/sasd"
         />
     <ImageView
+
         android:nextFocusLeft="@id/imageLayout"
         android:layout_margin="10dp"
         android:layout_alignParentRight="true"
         android:id="@+id/imageLayout2"
-        android:layout_width="200dp"
-        android:layout_height="400dp"
-        android:minHeight="300dp"
-        android:onClick="getGambars"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:elevation="10dp"
         android:background="#eeeeee"
         android:src="@drawable/sasd"
+
         />
-    <Button
-        android:id="@+id/btnProses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageLayout"
-        android:layout_centerHorizontal="true"
-        android:text="Process"
-        android:onClick="prosesImage"/>
-    <Button
-        android:id="@+id/btnEmoji"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Emoji"
-        android:layout_below="@+id/btnProses"
-        android:layout_centerHorizontal="true"
-        android:onClick="prosesEmoji"/>
 </RelativeLayout>
+    <Button
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnEmoji"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:text="Replace Image"
+        android:background="@drawable/toolbr"
+        android:layout_below="@+id/imageLayout"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:layout_alignParentRight="true"></Button>
+</LinearLayout>

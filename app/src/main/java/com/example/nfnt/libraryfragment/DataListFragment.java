@@ -7,7 +7,6 @@ package com.example.nfnt.libraryfragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +16,14 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NabiListFragment extends ListFragment {
+public class DataListFragment extends android.support.v4.app.ListFragment {
 
     static interface Listener{
         void itemClicked(long id);
     }
     private Listener listener;
 
-    public NabiListFragment() {
+    public DataListFragment() {
         // Required empty public constructor
     }
 
@@ -32,9 +31,9 @@ public class NabiListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String[] names = new String[Nabi.kisahnabi.length];
+        String[] names = new String[ImageReplacer.dataImage.length];
         for (int i=0; i<names.length; i++) {
-            names[i] = Nabi.kisahnabi[i].getNama_nabi();
+            names[i] = ImageReplacer.dataImage[i].getNama();
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(

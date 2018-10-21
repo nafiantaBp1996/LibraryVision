@@ -9,9 +9,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        NabiDetailFragment frag = (NabiDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detailFrag);
+        DetailFragment frag = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detailFrag);
         Bundle b = getIntent().getExtras();
-        frag.setResep(b.getLong("id"));
-        //frag.setResep(1);
+        frag.setImgs(b.getLong("id"));
     }
 }

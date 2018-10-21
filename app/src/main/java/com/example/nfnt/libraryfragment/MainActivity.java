@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements NabiListFragment.Listener {
+public class MainActivity extends AppCompatActivity implements DataListFragment.Listener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MyFirebaseIdService news = new MyFirebaseIdService();
+        news.showToken();
 
     }
 
@@ -27,10 +30,10 @@ public class MainActivity extends AppCompatActivity implements NabiListFragment.
         View fragmenDetail = findViewById(R.id.detailingFrag);
         if(fragmenDetail!=null)
         {
-            NabiDetailFragment deta = new NabiDetailFragment();
+            DetailFragment deta = new DetailFragment();
 
             FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
-            deta.setResep(id);
+            deta.setImgs(id);
             fragTrans.replace(R.id.detailingFrag,deta);
             fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             //fragTrans.addToBackStack(null);

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/appbar">
+
+    </include>
 <LinearLayout
+    android:id="@+id/frag"
+    android:layout_below="@+id/appbar"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:name="com.example.nfnt.libraryfragment.NabiListFragment"
+    android:name="com.example.nfnt.libraryfragment.DataListFragment"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listFrag"
     android:layout_weight="2"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActi"></fragment>
 </LinearLayout>
+</RelativeLayout>

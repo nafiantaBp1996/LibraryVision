@@ -1,5 +1,7 @@
 package com.example.nfnt.libraryfragment;
 
+import android.util.Log;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -8,13 +10,18 @@ import com.google.firebase.messaging.RemoteMessage;
  */
 
 public class MyFirebaseMessage extends FirebaseMessagingService{
+    private static final String TAG = "FaceReplacer";
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
 
-        String title = remoteMessage.getNotification().getTitle();
-        String body = remoteMessage.getNotification().getBody();
+        Log.d(TAG,"Pengirim :" + remoteMessage.getFrom());
 
-        Notifier.getinstance(getApplicationContext()).displayNotif(title,body);
+        if ( remoteMessage . getData (). size () > 0 ) {
+            Log . d ( TAG , "Message: " + remoteMessage . getData (). get ( "body" ));
+        }
 
+        DisplayNotification.getMyInstance(this).displayNotif(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"));
     }
 }
