@@ -19,7 +19,7 @@ min Sdk version yang digunakan adalah 19
     + Fungsi utama aplikasi ini berada pada kelas ini, yakni proses penggantian gambar pilihan user dengan gambar emojifier dan mengambil data sesuai list view yang ada
 + DisplayNotification.java
     + Kelas ini berfungsi untuk membuat notification builder ketika data JSON dikirim, klass ini dijalankan saat ada pesan masuk
-+ EmojifierMadeByNafi.java
++ Emojifier.java
     + Kelas ini memiliki 2 fungsi yakni deteksi wajah dan pengganti wajah yang terdeteksi dengan gambar dengan parsing gambar dinamis sesuai pilihannya 
 + Gambar.java
     + kelas ini digunakan untuk menghandle objek gambar dari firebase database
