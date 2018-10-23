@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements DataListFragment.
 
         MyFirebaseIdService news = new MyFirebaseIdService();
         news.showToken();
+        //intent yang didapat dari displaynotification
         Intent ahay = getIntent();
         String pesan = ahay.getStringExtra("isi");
         String pengirim = ahay.getStringExtra("judul");
