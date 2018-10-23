@@ -102,7 +102,7 @@ public class DetailFragment extends Fragment {
                         }
                     else
                         {
-                            EmojifierMadeByNafi emoji = new EmojifierMadeByNafi();
+                            Emojifier emoji = new Emojifier();
                             image.setImageBitmap(emoji.detectFaces(getContext(),imgFileCOre,imgFileRepalcer));
                         }
                 }

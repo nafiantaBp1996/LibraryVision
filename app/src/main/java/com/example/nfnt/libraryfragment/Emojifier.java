@@ -14,7 +14,7 @@ import com.google.android.gms.vision.face.FaceDetector;
  * Created by NFNT on 10/13/2018.
  */
 
-public class EmojifierMadeByNafi {
+public class Emojifier {
     private static double SMILING_PROP_THRESHOLD = .15;
     private static double EYE_OPEN_PROP_THRESHOLD = .5;
     private static float EMOJI_SCALE_FACTOR=.9f;
@@ -31,7 +31,7 @@ public class EmojifierMadeByNafi {
         CLOSED_EYE_FROWN
     }
 
-    private static final String TAG = EmojifierMadeByNafi.class.getSimpleName();
+    private static final String TAG = Emojifier.class.getSimpleName();
 
     public static Bitmap detectFaces(Context context, Bitmap image,Bitmap emoji) {
         //get the detector
