@@ -16,12 +16,14 @@
     >
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:name="com.example.nfnt.libraryfragment.DataListFragment"
+    android:name="com.example.nfnt.libraryfragment.ItemFragment"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listFrag"
     android:layout_weight="2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActi"></fragment>
+    tools:context=".MainActi">
+
+</fragment>
 </LinearLayout>
 </RelativeLayout>

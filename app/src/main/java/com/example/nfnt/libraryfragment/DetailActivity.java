@@ -12,5 +12,6 @@ public class DetailActivity extends AppCompatActivity {
         DetailFragment frag = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detailFrag);
         Bundle b = getIntent().getExtras();
         frag.setImgs(b.getLong("id"));
+        frag.seturl(b.getString("url"));
     }
 }

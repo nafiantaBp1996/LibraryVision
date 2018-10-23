@@ -22,7 +22,9 @@
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        tools:context=".MainActi"></fragment>
+        tools:context=".MainActi">
+
+    </fragment>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,7 +34,9 @@
         android:layout_weight="6"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        tools:context=".MainActi"></FrameLayout>
+        tools:context=".MainActi">
+
+    </FrameLayout>
 
 </LinearLayout>
     </RelativeLayout>

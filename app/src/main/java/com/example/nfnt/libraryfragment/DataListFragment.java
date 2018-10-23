@@ -19,7 +19,7 @@ import android.widget.ListView;
 public class DataListFragment extends android.support.v4.app.ListFragment {
 
     static interface Listener{
-        void itemClicked(long id);
+        void itemClicked(long id,String url);
     }
     private Listener listener;
 
@@ -51,7 +51,8 @@ public class DataListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView listView, View itemView, int position, long id){
         if(listener != null)
         {
-            listener.itemClicked(id);
+            String url = "wira";
+            listener.itemClicked(id,url);
         }
     }
 

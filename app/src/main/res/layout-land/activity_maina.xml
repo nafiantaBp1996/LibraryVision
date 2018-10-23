@@ -44,5 +44,7 @@
         android:background="@drawable/toolbr"
         android:layout_below="@+id/imageLayout"
         android:drawableStart="@android:drawable/ic_menu_edit"
-        android:layout_alignParentRight="true"></Button>
+        android:layout_alignParentRight="true">
+
+    </Button>
 </LinearLayout>

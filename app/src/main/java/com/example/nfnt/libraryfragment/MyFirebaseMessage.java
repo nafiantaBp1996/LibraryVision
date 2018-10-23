@@ -11,7 +11,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessage extends FirebaseMessagingService{
     private static final String TAG = "FaceReplacer";
-
+    String judul,isi,gambar,nama;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -20,8 +20,18 @@ public class MyFirebaseMessage extends FirebaseMessagingService{
 
         if ( remoteMessage . getData (). size () > 0 ) {
             Log . d ( TAG , "Message: " + remoteMessage . getData (). get ( "body" ));
+            //wira
+            // code dibawah ini berfungsi untuk mengambil nilai data dari json untuk selanjutnya dimasukkan kedalam parameter di syntax terbawah
+            judul =remoteMessage.getData().get("title");
+            isi = remoteMessage.getData().get("body");
+            gambar = remoteMessage.getData().get("gambar");
+            nama =remoteMessage.getData().get("nama");
+            //syafri
         }
 
-        DisplayNotification.getMyInstance(this).displayNotif(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"));
+//        DisplayNotification.getMyInstance(this).displayNotif(remoteMessage.getData().get("title"),remoteMessage.getData().get("body"));
+
+        //wira
+        DisplayNotification.getMyInstance(this).displayNotif(judul,isi,gambar,nama);
     }
 }

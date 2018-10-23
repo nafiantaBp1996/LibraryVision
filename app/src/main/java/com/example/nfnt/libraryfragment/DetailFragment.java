@@ -18,7 +18,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -31,7 +36,7 @@ public class DetailFragment extends Fragment {
     private long idImg;
     ImageView image, image2;
     private static final int SELECT_PICTURE = 1;
-    public String selectedImagePath = "";
+    public String selectedImagePath = "",url;
     Bitmap imgFileCOre,imgFileRepalcer;
     int actResult =0;
 
@@ -49,7 +54,9 @@ public class DetailFragment extends Fragment {
     public void setImgs(long id){
         this.idImg = id;
     }
-
+    public void seturl(String url){
+        this.url = url;
+    }
     public Bitmap statisImg (int draw)
     {
         Bitmap img = BitmapFactory.decodeResource(getActivity().getResources(),draw);
@@ -68,8 +75,14 @@ public class DetailFragment extends Fragment {
             Button proses = (Button) view.findViewById(R.id.btnEmoji);
 
             ImageReplacer data = ImageReplacer.dataImage[(int)idImg];
+            String gambar =  "https://d3pz1jifuab5zg.cloudfront.net/2016/08/16153058/hamster-health-center-2.jpg";
+            Picasso.get().load(url).into(image2);
             imgFileRepalcer = statisImg(data.getGambar_());
             image2.setImageBitmap(imgFileRepalcer);
+            //wira
+            imgFileRepalcer = getBitmapFromURL(url);
+            image2.setImageBitmap(imgFileRepalcer);
+            //syafri
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,6 +126,23 @@ public class DetailFragment extends Fragment {
             }
         }
     }
+
+    //wira
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+    //syafri
 
 }
 
