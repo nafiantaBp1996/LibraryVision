@@ -132,9 +132,15 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                         //g etadress();
                         Toast.makeText(v.getContext(), "Tidak Ada Gambar Yang Akan di Replace", Toast.LENGTH_SHORT).show();
                     } else {
+                        if(actResult == 3){
+                            Toast.makeText(v.getContext(), "muncul video lalala", Toast.LENGTH_SHORT).show();
+                            actResult =0;
+                        }else {
                         getadress();
                         Emojifier emoji = new Emojifier();
                         image.setImageBitmap(emoji.detectFaces(getContext(), imgFileCOre, imgFileRepalcer));
+                        actResult ++;
+                        }
                     }
                 }
             });
