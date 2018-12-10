@@ -51,8 +51,7 @@ public class DataListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView listView, View itemView, int position, long id){
         if(listener != null)
         {
-            String url = "wira";
-            listener.itemClicked(id,url);
+
         }
     }
 

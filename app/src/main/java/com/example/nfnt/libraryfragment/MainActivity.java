@@ -6,17 +6,13 @@ import android.os.StrictMode;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 
-public class MainActivity extends AppCompatActivity implements DataListFragment.Listener {
+public class MainActivity extends AppCompatActivity implements ItemFragment.Listener {
     private FirebaseDatabase database;
 
     private DatabaseReference mDatabase;
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements DataListFragment.
 
         else
         {
-            Toast.makeText(this, "Item " + id + " was clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Item " + url + " was clicked", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this.getApplicationContext(), DetailActivity.class);
             Bundle b = new Bundle();
             b.putString("url",url);

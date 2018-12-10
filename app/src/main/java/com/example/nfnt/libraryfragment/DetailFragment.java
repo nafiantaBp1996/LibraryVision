@@ -8,13 +8,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,12 +34,16 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -57,9 +65,9 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
     TextView textViewAlamat;
 
     private long idImg;
-    ImageView image, image2;
+    ImageView image, image2,imgplace;
     private static final int SELECT_PICTURE = 1;
-    public String selectedImagePath = "", url;
+    public String url;
     Bitmap imgFileCOre, imgFileRepalcer;
     int actResult = 0;
 
@@ -102,8 +110,11 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
         if (view != null) {
             image = (ImageView) view.findViewById(R.id.imageLayout);
             image2 = (ImageView) view.findViewById(R.id.imageLayout2);
+            imgplace=(ImageView) view.findViewById(R.id.imageViewPlace);
             Button proses = (Button) view.findViewById(R.id.btnEmoji);
+            Button save = (Button) view.findViewById(R.id.btnSave);
             textViewAlamat = (TextView) view.findViewById(R.id.textViewAlamat);
+            textViewAlamat.setDrawingCacheEnabled(true);
 
 
             ImageReplacer data = ImageReplacer.dataImage[(int) idImg];
@@ -125,6 +136,20 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                 }
             });
 
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (imgFileCOre == null) {
+                        Toast.makeText(v.getContext(), "Tidak Ada Gambar Yang Akan di Simpan", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        {
+                            image.buildDrawingCache();
+                            saveImage(image.getDrawingCache());
+                            Toast.makeText(v.getContext(), "Gambar Berhasil Disimpan", Toast.LENGTH_SHORT).show();
+                        }
+                }
+            });
             proses.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,13 +158,13 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                         Toast.makeText(v.getContext(), "Tidak Ada Gambar Yang Akan di Replace", Toast.LENGTH_SHORT).show();
                     } else {
                         if(actResult == 3){
-                            Toast.makeText(v.getContext(), "muncul video lalala", Toast.LENGTH_SHORT).show();
+                            Intent iklan = new Intent(getContext(),IklanActivity.class);
+                            startActivity(iklan);
+                            //Toast.makeText(v.getContext(), "muncul video lalala", Toast.LENGTH_SHORT).show();
                             actResult =0;
                         }else {
-                        getadress();
-                        Emojifier emoji = new Emojifier();
-                        image.setImageBitmap(emoji.detectFaces(getContext(), imgFileCOre, imgFileRepalcer));
-                        actResult ++;
+                            getadress();
+                            actResult ++;
                         }
                     }
                 }
@@ -148,6 +173,59 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
 
         }
 
+    }
+
+    public Bitmap drawImageAlamat(TextView text,int placess)
+    {
+        Emojifier emoji = new Emojifier();
+        Bitmap hasil = emoji.detectFaces(getContext(), imgFileCOre, imgFileRepalcer);
+        Bitmap resultBitmap = Bitmap.createBitmap(hasil.getWidth(), hasil.getHeight(), hasil.getConfig());
+        Bitmap textAlamat=text.getDrawingCache();
+        Bitmap place = BitmapFactory.decodeResource(getContext().getResources(),placess);
+        Bitmap places = Bitmap.createScaledBitmap(place, 80, 80, false);
+        int height=hasil.getHeight()-90;
+        Canvas canvas = new Canvas(resultBitmap);
+        canvas.drawBitmap(hasil,0, 0, null);
+        canvas.drawBitmap(places, 10,height, null);
+        canvas.drawBitmap(textAlamat, 100,height, null);
+
+        return resultBitmap;
+    }
+
+    public void saveImage(Bitmap bmp) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            boolean hasPermission = (ContextCompat.checkSelfPermission(getContext(),
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+            if (!hasPermission) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_LOCATION);
+
+            } else {
+                Bitmap bitmap = bmp;
+
+                FileOutputStream outStream = null;
+                File sdCard = Environment.getExternalStorageDirectory();
+                File dir = new File(sdCard.getAbsolutePath() + "/Replacer");
+                dir.mkdirs();
+                String fileName = String.format(System.currentTimeMillis() + ".jpg", System.currentTimeMillis());
+                File outFile = new File(dir, fileName);
+                try {
+                    outStream = new FileOutputStream(outFile);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                try {
+                    outStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    outStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -213,6 +291,8 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                                 for (PlaceLikelihood placeLikelihood : placeLikelihoods) {
                                     textViewAlamat.setText(placeLikelihood.getPlace().getAddress());//mengupdate text nama lokasi dengan data yang didapatkan
                                     //textViewAlamat.setText("cakper");//mengupdate text nama lokasi dengan data yang didapatkan
+                                    int idGambar=setTypeLocation(placeLikelihood.getPlace());
+                                    image.setImageBitmap(drawImageAlamat(textViewAlamat,idGambar));
                                 }
                                 placeLikelihoods.release();
                             }
@@ -252,6 +332,44 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                 placeLikelihoods.release();
             }
         });
+    }
+
+    private int setTypeLocation(Place currentPlace)//methode yang digunakan untuk mendapatkan gambar sesuai dengan tempat yang dipilih
+    {
+        int drawId = -1;// set aawal dari variabel
+        for (Integer placeType : currentPlace.getPlaceTypes())//melakukan perulangan untuk mendapatkan jenis tempat yang sesuai dari current place
+        {
+            switch (placeType)
+            {
+                case  Place.TYPE_UNIVERSITY:
+                    drawId= R.drawable.school;
+                    break;
+                case  Place.TYPE_CAFE:
+                    drawId= R.drawable.coffeeshop;
+                    break;
+                case  Place.TYPE_SHOPPING_MALL:
+                    drawId= R.drawable.mall;
+                    break;
+                case  Place.TYPE_MOVIE_THEATER:
+                    drawId= R.drawable.cinema;
+                    break;
+
+                case  Place.TYPE_CEMETERY:
+                    drawId= R.drawable.tombstone;
+                    break;
+                case  Place.TYPE_NIGHT_CLUB:
+                    drawId= R.drawable.haram;
+                    break;
+                case  Place.TYPE_MOSQUE:
+                    drawId= R.drawable.mosque;
+                    break;
+            }
+            if(drawId<0)
+            {
+                drawId=R.drawable.notfound; //jika tidak ditemukan maka variabel akan diganti dengan gambar not found
+            }
+        }
+        return drawId; //mengembalikan nilai dari hasil seleksi kondisi untuk diakses drawabale
     }
 
 }

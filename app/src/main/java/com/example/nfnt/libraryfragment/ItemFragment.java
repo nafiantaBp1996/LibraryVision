@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,10 +26,11 @@ public class ItemFragment extends android.support.v4.app.ListFragment {
     private FirebaseDatabase database;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabase;
-    static interface Listener{
-        void itemClicked(long id);
+
+    interface Listener{
+        void itemClicked(long id,String url);
     }
-    private DataListFragment.Listener listener;
+    private Listener listener;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -86,13 +87,14 @@ public class ItemFragment extends android.support.v4.app.ListFragment {
     @ Override
     public void onAttach ( Context context ) {
         super . onAttach ( context );
-        this . listener = (DataListFragment.Listener) context ;
+        this . listener = (Listener) context ;
     }
     @Override
     public void onListItemClick(ListView listView, View itemView, int position, long id){
         if(listener != null)
         {
             String url=urlname.get(position);
+            Toast.makeText(itemView.getContext(),urlname.get(position),Toast.LENGTH_SHORT).show();
             listener.itemClicked(id,url);
         }
     }

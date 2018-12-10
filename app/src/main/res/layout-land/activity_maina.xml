@@ -30,6 +30,29 @@
             android:src="@drawable/sasd"
 
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_alignBottom="@+id/imageLayout"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/imageViewPlace"
+                android:layout_width="200px"
+                android:layout_height="100px"
+                android:src="@drawable/dog" />
+
+            <TextView
+                android:id="@+id/textViewAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="10dp"
+                android:paddingRight="10dp"
+                android:shadowColor="@android:color/black"
+                android:text="Alamatfsdgsdgsdgds gsdgsd gsdgsdgsdg gdsgsddsgsdg"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </RelativeLayout>
     <Button
         android:paddingStart="200dp"
@@ -44,6 +67,22 @@
         android:background="@drawable/toolbr"
         android:layout_below="@+id/imageLayout"
         android:drawableStart="@android:drawable/ic_menu_edit"
+        android:layout_alignParentRight="true">
+    </Button>
+    <Button
+        android:layout_marginTop="10dp"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:text="Save Image"
+        android:background="@drawable/toolbr"
+        android:layout_below="@+id/imageLayout"
+        android:drawableLeft="@android:drawable/ic_menu_save"
         android:layout_alignParentRight="true">
 
     </Button>
