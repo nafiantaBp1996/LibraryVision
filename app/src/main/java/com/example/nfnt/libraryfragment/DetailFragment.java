@@ -71,6 +71,7 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
     Bitmap imgFileCOre, imgFileRepalcer;
     int actResult = 0;
 
+    public static int placesWidget;
 
     public DetailFragment() {
     }
@@ -293,6 +294,8 @@ public class DetailFragment extends Fragment implements GetAddress.onTaskDone, G
                                     //textViewAlamat.setText("cakper");//mengupdate text nama lokasi dengan data yang didapatkan
                                     int idGambar=setTypeLocation(placeLikelihood.getPlace());
                                     image.setImageBitmap(drawImageAlamat(textViewAlamat,idGambar));
+                                    placesWidget = idGambar;
+                                    break;
                                 }
                                 placeLikelihoods.release();
                             }

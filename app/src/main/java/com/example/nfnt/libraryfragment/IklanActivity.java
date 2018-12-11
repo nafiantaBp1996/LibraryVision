@@ -42,11 +42,6 @@ public class IklanActivity extends AppCompatActivity {
                 finish();
             }
         });
-        //listVideoData = new ArrayList<>();
-        //listVideoData.add("Jangan tonton Dosa");
-        //listVideoData.add("Video Lucu");
-
-
                 getMediaPlayer(getVideoFile("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"));
     }
 

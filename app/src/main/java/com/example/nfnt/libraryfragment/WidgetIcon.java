@@ -21,10 +21,10 @@ public class WidgetIcon extends AppWidgetProvider {
 // Construct the RemoteViews object
         SharedPreferences prefs = context.getSharedPreferences(SHARE_PREF_FILE,0);
         int count = prefs.getInt(COUNT_KEY + appWidgetId,0);
-        count ++;
+        //count ++;
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_icon);
         WidgetIcon lala = new WidgetIcon();
-        lala.setTipeLokasi(count);
+        lala.setTipeLokasi(DetailFragment.placesWidget);
 
         views.setImageViewResource(R.id.icon,drawable);
         SharedPreferences.Editor predEditor = prefs.edit();
