@@ -4,7 +4,7 @@
 
     <meta-data
         android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="face"></meta-data>
+        android:value="face" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -51,7 +51,17 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".IklanActivity"></activity>
+        <activity android:name=".IklanActivity" />
+
+        <receiver android:name=".WidgetIcon">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_icon_info" />
+        </receiver>
     </application>
 
 </manifest>
