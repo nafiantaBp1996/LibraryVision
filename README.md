@@ -10,10 +10,13 @@ Image replacer adalah aplikasi pengganti wajah menggunakan sekumpulan gambar yan
 ## Screenshots
 + layar home (listview dinamis dari database firebase)
 ![Layar Home](https://i.ibb.co/wKNdTsn/Screenshot-20181211-230421.jpg)
+
 + Replace wajah
 ![Layar Replacer](https://i.ibb.co/R7DFthf/Screenshot-20181211-221056.jpg)
+
 + iklan (terdapat tombol close disebelah kiri atas untuk menutup iklan)
 ![Layar Iklan](https://i.ibb.co/LSC2Ys7/Screenshot-20181211-221021.jpg)
+
 + widget (update widget ketika telah mereplace image)
 ![widget](https://i.ibb.co/sRgyGFx/Whats-App-Image-2018-12-11-at-23-16-50.jpg)
 
