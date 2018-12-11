@@ -1,11 +1,21 @@
 # Image Replacer
-| Nama | Absen |
+| Group | 06 |
 | :---------------: | :---------------:|
 | Nafianta Budi P.  | 20 |
 | Syafri Wira W.    | 22 |
 
 ## Image Replacer
 Image replacer adalah aplikasi pengganti wajah menggunakan sekumpulan gambar yang dinamis
+
+## Screenshots
++ layar home (listview dinamis dari database firebase)
+![Layar Home](https://i.ibb.co/wKNdTsn/Screenshot-20181211-230421.jpg)
++ Replace wajah
+![Layar Replacer](https://i.ibb.co/R7DFthf/Screenshot-20181211-221056.jpg)
++ iklan (terdapat tombol close disebelah kiri atas untuk menutup iklan)
+![Layar Iklan](https://i.ibb.co/LSC2Ys7/Screenshot-20181211-221021.jpg)
++ widget (update widget ketika telah mereplace image)
+![widget](https://i.ibb.co/sRgyGFx/Whats-App-Image-2018-12-11-at-23-16-50.jpg)
 
 ## Android OS dan Level
 min Sdk version yang digunakan adalah 19
@@ -35,7 +45,13 @@ min Sdk version yang digunakan adalah 19
     + Kelas ini berfungsi untum mengambil data JSON untuk selanjutnya diparsing ke kelas DisplayNotificatiion 
 + SplashActivity.java
     + kelas pertama yang langsung mengarahkan activity ke MainActivity
++ IklanActivity.java
+    + kelas yang digunakan untuk menampilkan iklan2an berupa video
+ + WidgetIcon.java
+    + kelas Widget yang berisi function untuk memanipulasi widget
 
+## Referensi
+[widget](https://developer.android.com/guide/topics/appwidgets/)
 ## Lisensi
 The MIT License
 
