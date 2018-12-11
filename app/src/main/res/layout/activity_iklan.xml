@@ -33,7 +33,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="X"
-            android:background="none"/>
+            android:background="@android:color/transparent"/>
 
     </FrameLayout>
 </LinearLayout>
